@@ -90,6 +90,7 @@ const Profile = () => {
           type="email"
           placeholder="email "
           id="email"
+         
           className="border p-3 rounded-lg"
         />
         <input
