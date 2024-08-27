@@ -5,22 +5,26 @@ import userRouter from'./routes/user.routes.js'
 import authRouter from './routes/auth.route.js'
 import listingRouter from './routes/listing.route.js';
 
+
 import cookieParser from "cookie-parser";
 
 
 dotenv.config()
-const app = express();
+const app = express();mongoose
+.connect(process.env.MONGO)
+.then(() => {
+  console.log('Connected to MongoDB!');
+})
+.catch((err) => {
+  console.log(err);
+});
+
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/listing', listingRouter);
-mongoose.connect(process.env.MONGO).then(()=>{
-    console.log("Connected to MongoDB");
-}).catch((err)=>{
-    console.log(err)
 
-})
-app.use("/api/user",userRouter)
-app.use("/api/auth",authRouter)
+app.use('/api/user',userRouter)
+app.use('/api/auth',authRouter)
 app.use('/app/listing', listingRouter)
 
 app.use((err,req,res,nect)=>{
