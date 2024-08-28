@@ -18,7 +18,6 @@ export default function OAuth() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${result.user.getIdToken()}`,
 
         },
         body: JSON.stringify({
