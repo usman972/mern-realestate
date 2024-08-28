@@ -4,9 +4,15 @@ import dotenv from 'dotenv'
 import userRouter from'./routes/user.routes.js'
 import authRouter from './routes/auth.route.js'
 import listingRouter from './routes/listing.route.js';
+import firebase from 'firebase/compat/app'
+
+
 
 
 import cookieParser from "cookie-parser";
+
+const firebaseConfig={}
+firebase.initializeApp=(firebaseConfig)
 
 
 dotenv.config()
