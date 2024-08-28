@@ -46,11 +46,10 @@ const listingSchema=new mongoose.Schema({
         type:Boolean,
         required:true
     },
-    imagUrls:{
-        type:Array,
-        required:true
+    imageUrls:[{
+       type:String,
 
-    },
+    }],
     userRef:{
         type:String,
         required:true,
