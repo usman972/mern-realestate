@@ -5,6 +5,7 @@ import userRouter from'./routes/user.routes.js'
 import authRouter from './routes/auth.route.js'
 import listingRouter from './routes/listing.route.js';
 import firebase from 'firebase/compat/app'
+import path from 'path'
 
 
 
@@ -27,6 +28,8 @@ mongoose.connect(process.env.MONGO,
   console.log(err);
 });
 
+const __dirname =path.resolve();
+
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api/listing', listingRouter);
@@ -34,6 +37,13 @@ app.use('/api/listing', listingRouter);
 app.use('/api/user',userRouter)
 app.use('/api/auth',authRouter)
 app.use('/app/listing', listingRouter)
+
+app.use(express.static(path.join(__dirname, 'client/dist')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client','dist','index.hmtl'));
+});
+
 
 app.use((err,req,res,nect)=>{
     const statusCode=err.statusCode || 500
